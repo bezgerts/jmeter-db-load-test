@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+  mysql-otusdb:
+    restart: always
+    container_name: mysql-otusdb-container
+    image: mysql:8.0.18
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345
+    command:
+      --init-file /init-mysql.sql
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init-mysql.sql:/init-mysql.sql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+    expose:
+      - "3306"
+    ports:
+      - "3310:3306"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 256M
+
+  postgres-otusdb:
+    restart: always
+    container_name: postgres-otusdb-container
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5434:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-postgres.sql:/docker-entrypoint-initdb.d/init-postgres.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 256M
+volumes:
+  mysql-data:
+  postgres-data:
+    driver: local

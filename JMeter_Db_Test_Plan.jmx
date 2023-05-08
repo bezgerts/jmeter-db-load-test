@@ -31,7 +31,7 @@
           <stringProp name="checkQuery">SELECT 1</stringProp>
           <stringProp name="connectionAge">5000</stringProp>
           <stringProp name="connectionProperties"></stringProp>
-          <stringProp name="dataSource">myOtusDatabase</stringProp>
+          <stringProp name="dataSource">myMySqlDatabase</stringProp>
           <stringProp name="dbUrl">jdbc:mysql://localhost:3309/otus</stringProp>
           <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
           <stringProp name="initQuery"></stringProp>
@@ -45,10 +45,42 @@
           <stringProp name="username">root</stringProp>
         </JDBCDataSource>
         <hashTree/>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Expensive products" enabled="true">
-          <stringProp name="dataSource">myOtusDatabase</stringProp>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="Postgres Connection Configuration" enabled="true">
+          <stringProp name="dataSource">myPostgresDatabase</stringProp>
+          <stringProp name="poolMax">0</stringProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="transactionIsolation">DEFAULT</stringProp>
+          <boolProp name="preinit">false</boolProp>
+          <stringProp name="initQuery"></stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="checkQuery"></stringProp>
+          <stringProp name="dbUrl">jdbc:postgresql://localhost:5434/postgres</stringProp>
+          <stringProp name="driver">org.postgresql.Driver</stringProp>
+          <stringProp name="username">postgres</stringProp>
+          <stringProp name="password">postgres</stringProp>
+          <stringProp name="connectionProperties"></stringProp>
+        </JDBCDataSource>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Expensive products (MySQL DB)" enabled="true">
+          <stringProp name="dataSource">myMySqlDatabase</stringProp>
           <stringProp name="queryType">Prepared Select Statement</stringProp>
-          <stringProp name="query">SELECT count(*) FROM otus.products p WHERE p.cost &gt; ?</stringProp>
+          <stringProp name="query">select count(*) from products p join product_categories pc on pc.id = p.category_id where p.cost &gt; ?</stringProp>
+          <stringProp name="queryArguments">500</stringProp>
+          <stringProp name="queryArgumentsTypes">numeric</stringProp>
+          <stringProp name="variableNames"></stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="resultSetMaxRows"></stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Expensive products (Postgres DB)" enabled="true">
+          <stringProp name="dataSource">myPostgresDatabase</stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="query">select count(*) from products p join product_categories pc on pc.id = p.category_id where p.cost &gt; ?</stringProp>
           <stringProp name="queryArguments">500</stringProp>
           <stringProp name="queryArgumentsTypes">numeric</stringProp>
           <stringProp name="variableNames"></stringProp>
