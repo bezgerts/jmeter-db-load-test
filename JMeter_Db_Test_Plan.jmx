@@ -32,7 +32,7 @@
           <stringProp name="connectionAge">5000</stringProp>
           <stringProp name="connectionProperties"></stringProp>
           <stringProp name="dataSource">myMySqlDatabase</stringProp>
-          <stringProp name="dbUrl">jdbc:mysql://localhost:3309/otus</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://localhost:3310/otus</stringProp>
           <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
           <stringProp name="initQuery"></stringProp>
           <boolProp name="keepAlive">true</boolProp>
